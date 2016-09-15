@@ -144,6 +144,7 @@
             this.Controls.Add(this.DiscountPercentLabel);
             this.Controls.Add(this.SubtotalLabel);
             this.Name = "InvoiceTotalForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invoice Total";
             this.ResumeLayout(false);
             this.PerformLayout();
