@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,42 @@ namespace COMP1004_F2016_Lesson2
         public InvoiceTotalForm()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// CalculateButton Event Handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            // Local Variables
+            const double DiscountPercent = 0.1;
+            double Subtotal;
+            double DiscountAmount;
+            double Total;
+
+            try
+            {
+                Subtotal = Convert.ToDouble(SubtotalTextBox.Text);
+                DiscountAmount = Subtotal * DiscountPercent;
+                Total = Subtotal - DiscountAmount;
+
+                DiscountAmountTextBox.Text = DiscountAmount.ToString("C2");
+                TotalTextBox.Text = Total.ToString("C2");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Invalid Data Entered", "Input Error");
+                Debug.WriteLine(exception.Message);
+                SubtotalTextBox.Focus();
+                SubtotalTextBox.SelectAll();
+            }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
